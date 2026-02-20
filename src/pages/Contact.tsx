@@ -49,17 +49,18 @@ export default function Contact() {
       await addBooking(formData);
 
       // Send to Google Apps Script
-      const response = await fetch('https://script.google.com/macros/s/AKfycbwzQaJICu2Xs9bnLL-xmdDCwmlS_1sl8UX6UI9yP_u0BIJVzVtyk-LipskmDfy2R7UE/exec', {
+      // Using mode: 'no-cors' is essential for client-side submission to Google Apps Script
+      // This means we cannot read the response, but the request will still reach the server.
+      await fetch('https://script.google.com/macros/s/AKfycbwH2JkUTjsflrkCV0q-afVs-Ws757XwHeBqbrs2v7a_it7bUYokkXE8QTCMmxqedpHr/exec', {
         method: 'POST',
-        mode: 'no-cors', // 'no-cors' is often needed for Google Apps Script web apps to avoid CORS errors in browser
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(payload)
       });
 
-      // Since mode is 'no-cors', we can't read the response status or body directly.
-      // We assume success if no network error occurred.
+      // With no-cors, we assume success if no network error occurred
       setSubmitStatus('success');
       setFormData({
         fullName: '',
@@ -157,12 +158,13 @@ export default function Contact() {
                       />
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone number (optional)</label>
+                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
                       <input 
                         type="tel" 
                         id="phone" 
                         value={formData.phone}
                         onChange={handleChange}
+                        required
                         className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
                         placeholder="+234..." 
                       />
