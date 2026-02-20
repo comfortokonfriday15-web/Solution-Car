@@ -13,6 +13,7 @@ import Fleet from './pages/Fleet';
 import Contact from './pages/Contact';
 import Services from './pages/Services';
 import Admin from './pages/Admin';
+import ScrollReveal from './components/ScrollReveal';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -28,6 +29,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
+      <ScrollReveal />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
