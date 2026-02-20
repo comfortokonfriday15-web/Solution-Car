@@ -6,12 +6,12 @@ import { addBooking } from '../services/db';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: '',
+    fullName: '',
     email: '',
     phone: '',
     service: '',
     message: '',
-    contactMethod: 'either'
+    contactMethod: 'Either'
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
@@ -21,8 +21,8 @@ export default function Contact() {
     // Handle radio buttons which use 'name' attribute, others use 'id'
     const fieldName = type === 'radio' ? name : id;
     
-    // For radio buttons, the name is 'contact-method' but we want to store it as 'contactMethod'
-    if (fieldName === 'contact-method') {
+    // For radio buttons, the name is 'contactMethod'
+    if (fieldName === 'contactMethod') {
       setFormData(prev => ({ ...prev, contactMethod: value }));
     } else {
       setFormData(prev => ({ ...prev, [fieldName]: value }));
@@ -34,16 +34,40 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
+    // Create the payload matching the Google Apps Script expectation
+    const payload = {
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      service: formData.service,
+      message: formData.message,
+      contactMethod: formData.contactMethod
+    };
+
     try {
+      // Save to local IndexedDB first (as backup/offline support)
       await addBooking(formData);
+
+      // Send to Google Apps Script
+      const response = await fetch('https://script.google.com/macros/s/AKfycbwzQaJICu2Xs9bnLL-xmdDCwmlS_1sl8UX6UI9yP_u0BIJVzVtyk-LipskmDfy2R7UE/exec', {
+        method: 'POST',
+        mode: 'no-cors', // 'no-cors' is often needed for Google Apps Script web apps to avoid CORS errors in browser
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
+
+      // Since mode is 'no-cors', we can't read the response status or body directly.
+      // We assume success if no network error occurred.
       setSubmitStatus('success');
       setFormData({
-        name: '',
+        fullName: '',
         email: '',
         phone: '',
         service: '',
         message: '',
-        contactMethod: 'either'
+        contactMethod: 'Either'
       });
     } catch (error) {
       console.error('Error saving booking:', error);
@@ -107,11 +131,11 @@ export default function Contact() {
               <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your full name</label>
+                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your full name *</label>
                     <input 
                       type="text" 
-                      id="name" 
-                      value={formData.name}
+                      id="fullName" 
+                      value={formData.fullName}
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
@@ -121,7 +145,7 @@ export default function Contact() {
                   
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email address</label>
+                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email address *</label>
                       <input 
                         type="email" 
                         id="email" 
@@ -146,30 +170,30 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">What do you need?</label>
+                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">What do you need? *</label>
                     <select 
                       id="service" 
                       value={formData.service}
                       onChange={handleChange}
+                      required
                       className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
                     >
                       <option value="">Select a service...</option>
-                      <option value="airport">Airport Transfer</option>
-                      <option value="full-day">Full Day Rental</option>
-                      <option value="event">Event Logistics</option>
-                      <option value="inter-state">Inter/Intra-state Logistics</option>
-                      <option value="chauffeur">Chauffeur Service</option>
-                      <option value="not-sure">Not sure – I'll book a Call</option>
+                      <option value="Airport Transfer">Airport Transfer</option>
+                      <option value="Full Day Rental">Full Day Rental</option>
+                      <option value="Event logistics">Event logistics</option>
+                      <option value="Inter & Intra-state Logistics">Inter & Intra-state Logistics</option>
                     </select>
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tell us about your trip or request</label>
+                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tell us about your trip or request *</label>
                     <textarea 
                       id="message" 
                       rows={4} 
                       value={formData.message}
                       onChange={handleChange}
+                      required
                       className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
                       placeholder="e.g., I need a well-maintained SUV for 3 days next week, with a professional chauffeur. We're 4 people."
                     ></textarea>
@@ -177,15 +201,16 @@ export default function Contact() {
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">How should we reach you?</label>
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">How should we reach you? *</label>
                     <div className="flex gap-6">
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input 
                           type="radio" 
-                          name="contact-method" 
-                          value="email" 
-                          checked={formData.contactMethod === 'email'}
+                          name="contactMethod" 
+                          value="Email" 
+                          checked={formData.contactMethod === 'Email'}
                           onChange={handleChange}
+                          required
                           className="text-secondary focus:ring-secondary" 
                         />
                         <span className="text-sm text-gray-600 dark:text-gray-400">Email</span>
@@ -193,9 +218,9 @@ export default function Contact() {
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input 
                           type="radio" 
-                          name="contact-method" 
-                          value="phone" 
-                          checked={formData.contactMethod === 'phone'}
+                          name="contactMethod" 
+                          value="Phone" 
+                          checked={formData.contactMethod === 'Phone'}
                           onChange={handleChange}
                           className="text-secondary focus:ring-secondary" 
                         />
@@ -204,9 +229,9 @@ export default function Contact() {
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input 
                           type="radio" 
-                          name="contact-method" 
-                          value="either" 
-                          checked={formData.contactMethod === 'either'}
+                          name="contactMethod" 
+                          value="Either" 
+                          checked={formData.contactMethod === 'Either'}
                           onChange={handleChange}
                           className="text-secondary focus:ring-secondary" 
                         />
@@ -220,19 +245,19 @@ export default function Contact() {
                     disabled={isSubmitting}
                     className="w-full py-4 bg-secondary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-colors duration-300 shadow-md hover:shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    {isSubmitting ? 'Sending...' : 'Send Booking Inquiry'}
+                    {isSubmitting ? 'Sending...' : 'Request a Callback'}
                   </button>
 
                   {submitStatus === 'success' && (
                     <div className="p-4 bg-green-100 text-green-700 rounded-lg flex items-center gap-2">
                       <CheckCircle size={20} />
-                      <span>Booking inquiry sent successfully! We'll be in touch soon.</span>
+                      <span>✓ Thank you! Your inquiry has been sent. We'll contact you shortly.</span>
                     </div>
                   )}
 
                   {submitStatus === 'error' && (
                     <div className="p-4 bg-red-100 text-red-700 rounded-lg">
-                      Something went wrong. Please try again later.
+                      ✗ Sorry, something went wrong. Please call us at 0808 441 0493.
                     </div>
                   )}
                 </form>

@@ -3,7 +3,7 @@ import { getBookings } from '../services/db';
 
 interface Booking {
   id: number;
-  name: string;
+  fullName: string;
   email: string;
   phone: string;
   service: string;
@@ -72,7 +72,7 @@ export default function Admin() {
                         {new Date(booking.timestamp).toLocaleString()}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white">
-                        {booking.name}
+                        {booking.fullName}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500 dark:text-gray-400">
                         <div className="flex flex-col">

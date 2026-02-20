@@ -119,6 +119,54 @@ export default function Services() {
         </div>
       </section>
 
+      {/* Experience the Ride Section */}
+      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-4">
+              Experience the Ride
+            </h2>
+            <div className="w-24 h-1 bg-secondary mx-auto rounded-full mb-6" />
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              See our fleet in action – luxury, comfort, and style combined
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { url: 'https://www.instagram.com/reel/DOptfz-jKyb/embed', title: 'Luxury in Motion' },
+              { url: 'https://www.instagram.com/reel/DQYL9hqiFiq/embed', title: 'Executive Travel' },
+              { url: 'https://www.instagram.com/reel/DNahC_sMKGS/embed', title: 'Premium Comfort' }
+            ].map((video, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="group bg-white dark:bg-bg-dark rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col"
+              >
+                <div className="relative w-full h-[500px] bg-gray-200 dark:bg-gray-800">
+                  <iframe 
+                    src={video.url} 
+                    className="w-full h-full object-cover"
+                    frameBorder="0" 
+                    scrolling="no" 
+                    allowFullScreen
+                    title={`${video.title} Video`}
+                  />
+                </div>
+                
+                <div className="p-6 text-center mt-auto">
+                  <h3 className="text-xl font-bold text-primary dark:text-white mb-1">{video.title}</h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Footer / Contact Strip */}
       <section className="bg-primary text-white py-12">
         <div className="max-w-7xl mx-auto px-4 text-center space-y-8">

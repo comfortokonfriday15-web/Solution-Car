@@ -5,23 +5,23 @@ import { Star, Shield, Clock, MapPin } from 'lucide-react';
 export default function Fleet() {
   const categories = [
     {
-      title: 'Luxury Sedans',
-      image: 'https://images.unsplash.com/photo-1550355291-bbee04a92027?ixlib=rb-4.0.3&auto=format&fit=crop&w=1472&q=80',
-      desc: 'Experience ultimate comfort and style with our premium sedans. Perfect for business meetings and special events.',
+      title: 'Luxury SUVs',
+      image: 'https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/600223357_2761241217545417_3725798638655960251_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=103&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeEJe3fW5lhfvhHUcUbgn0mkpB5AfeXCN62kHkB95cI3rVZifbzEPx9lB7M9FL81B1mNWiL-FPXNl7rA6SSUW71O&_nc_ohc=Q-fSYlHKqBYQ7kNvwH25VYr&_nc_oc=AdkThpp5LPf5Cz3-qORqn6vfUCKqY_WkRuOl8jnKernPLpoPbk1eYdlrGPoUkHJ--B0&_nc_zt=23&_nc_ht=scontent-los2-1.xx&_nc_gid=hCfuKBF1npX9Tl7uoOj53w&oh=00_Afvhif83ctUyGRJRQQji43udlnNqL6BDz6ufi3-_R7cs5A&oe=699E70CD',
+      desc: 'Experience ultimate comfort and style with our premium SUVs. Perfect for business meetings and special events.',
     },
     {
       title: 'SUVs & Jeeps',
-      image: 'https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80',
+      image: 'https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/574382818_2725742807761925_6493642576495801610_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeH8tvn-89JuV7w6XuRs6YgAd85o9jJjAbN3zmj2MmMBs9St9qD_owibAbIOkV5A-87BRYQSjj2kW-lLvgbTGWaw&_nc_ohc=LB0xflOEH0YQ7kNvwE0eKS1&_nc_oc=AdlB77OqTCxbLwHIe0Hn5dyXkFLL4T7DMImBhlUSNdhsdlvhZObEfN2RITOkzf8Ect8&_nc_zt=23&_nc_ht=scontent-los2-1.xx&_nc_gid=KcI1vOiygezgplxJwmVbiA&oh=00_Afv56DWHpvoz-LA0Xtx1e9zdnB6d7bfXFiCAEFKFr5dsMg&oe=699E596C',
       desc: 'Spacious and powerful, our SUVs are ideal for family trips and rugged terrains.',
     },
     {
       title: 'Executive Buses',
-      image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80',
+      image: 'https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/601364048_2765961010406771_4326772552775136116_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeH7Px6X-4ND62X9zpSxdl_0GYV7bXdThkoZhXttd1OGSmacAFt4Z9TPra-bGEMmUNvcMaglxQYfKz0AcMhjjxVC&_nc_ohc=go89SSS-Bw8Q7kNvwE7JEGk&_nc_oc=Adk5eg8eXQH7OE_Erx6ViUlWIabMKfC7nhedxSNiozfntfz81uvS_b2yAeMR3rcosYU&_nc_zt=23&_nc_ht=scontent-los2-1.xx&_nc_gid=ZqzyRkX8P9kcwP03nZSsJQ&oh=00_AfslnQx0-kwvT-12-dEby582ZZoNV7MQBIjmOOXbhNto7Q&oe=699E6280',
       desc: 'Comfortable group travel solutions. Perfect for corporate retreats and team outings.',
     },
     {
       title: 'Standard Cars',
-      image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80',
+      image: 'https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/586452627_2741111709558368_2709808711498773845_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=101&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeF9vqqdmxnp1QyX5eTHXBjuutk9IU7VQxS62T0hTtVDFMiSXqvHlelj643WKGks62yx5ChJtbho-MDAMlWEYT_c&_nc_ohc=r-6b4I5UJrMQ7kNvwFTynrX&_nc_oc=AdmlFW5JuNaDziu6OqSAooxRn2OzgP-OMunRBzADQeq_o7M01J7KAxGkF7xpzi73XZw&_nc_zt=23&_nc_ht=scontent-los2-1.xx&_nc_gid=phsWtCeuDlAiN1w6sICFJw&oh=00_AftnmRTXG138luUSls7pAeD-lzyOSaPD942GXnehckzgpw&oe=699E7538',
       desc: 'Reliable and fuel-efficient vehicles for everyday use and city commuting.',
     }
   ];

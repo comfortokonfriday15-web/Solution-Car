@@ -4,7 +4,7 @@ interface BookingDB extends DBSchema {
   bookings: {
     key: number;
     value: {
-      name: string;
+      fullName: string;
       email: string;
       phone: string;
       service: string;
