@@ -48,13 +48,13 @@ export default function Home() {
           >
             <Link 
               to="/fleet" 
-              className="px-8 py-4 bg-secondary text-primary font-bold rounded-full hover:bg-white hover:text-primary transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="btn-primary"
             >
               Browse Our Fleet
             </Link>
             <Link 
               to="/contact" 
-              className="px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-primary transition-all duration-300"
+              className="btn-secondary"
             >
               Contact Us
             </Link>

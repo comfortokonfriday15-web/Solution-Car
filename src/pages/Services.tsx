@@ -197,9 +197,8 @@ export default function Services() {
           </div>
 
           <motion.button 
-            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 bg-secondary text-primary font-bold rounded-full shadow-lg hover:bg-white transition-colors"
+            className="btn-primary"
           >
             Book Your Ride Today
           </motion.button>

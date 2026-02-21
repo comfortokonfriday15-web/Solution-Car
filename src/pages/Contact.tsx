@@ -245,7 +245,7 @@ export default function Contact() {
                   <button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full py-4 bg-secondary text-primary font-bold rounded-lg hover:bg-primary hover:text-white transition-colors duration-300 shadow-md hover:shadow-lg text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {isSubmitting ? 'Sending...' : 'Request a Callback'}
                   </button>

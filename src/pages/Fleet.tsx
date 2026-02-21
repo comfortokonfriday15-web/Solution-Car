@@ -101,7 +101,7 @@ export default function Fleet() {
 
                   <Link 
                     to="/contact" 
-                    className="inline-block w-full text-center py-3 bg-primary text-white font-semibold rounded-lg hover:bg-secondary hover:text-primary transition-colors duration-300"
+                    className="inline-block w-full text-center py-3 bg-primary text-white font-semibold rounded-lg hover:bg-secondary hover:text-primary transition-all duration-300 hover:scale-105 hover:shadow-xl"
                   >
                     Check Availability
                   </Link>
@@ -116,7 +116,7 @@ export default function Fleet() {
             </p>
             <Link 
               to="/contact" 
-              className="px-8 py-4 bg-secondary text-primary font-bold rounded-full hover:bg-primary hover:text-white transition-all duration-300 shadow-lg hover:shadow-xl"
+              className="btn-primary"
             >
               Contact Us for Reservations
             </Link>
