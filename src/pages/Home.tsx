@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Star, Shield, Clock, MapPin } from 'lucide-react';
 import Reviews from '../components/Reviews';
 import CelebrityTestimonials from '../components/CelebrityTestimonials';
+import VideoPlaceholder from '../components/VideoPlaceholder';
 
 export default function Home() {
   return (

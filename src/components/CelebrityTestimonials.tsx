@@ -1,21 +1,19 @@
 import { motion } from 'motion/react';
+import VideoPlaceholder from './VideoPlaceholder';
 
 export default function CelebrityTestimonials() {
   const celebrities = [
     {
       name: 'Asherkine',
       title: 'Popular Philanthropist',
-      embedUrl: 'https://www.instagram.com/reel/DCZgIiNADDN/embed',
     },
     {
       name: 'Veekee James & Femi Taere',
       title: 'Fashion Icon & Celebrity Personality',
-      embedUrl: 'https://www.instagram.com/reel/DHBq8G5NB2S/embed',
     },
     {
       name: 'William Troost-Ekong',
       title: 'Former Captain, Super Eagles',
-      embedUrl: 'https://www.instagram.com/reel/DLiJ8FStjZ_/embed',
     }
   ];
 
@@ -44,14 +42,7 @@ export default function CelebrityTestimonials() {
               className="group bg-white dark:bg-bg-dark rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col"
             >
               <div className="relative w-full h-[500px] bg-gray-200 dark:bg-gray-800">
-                <iframe 
-                  src={celebrity.embedUrl} 
-                  className="w-full h-full object-cover"
-                  frameBorder="0" 
-                  scrolling="no" 
-                  allowFullScreen
-                  title={`${celebrity.name} Testimonial`}
-                />
+                <VideoPlaceholder title={celebrity.name} />
               </div>
               
               <div className="p-6 text-center mt-auto">

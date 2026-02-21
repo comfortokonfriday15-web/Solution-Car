@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { MapPin, Phone, Clock, Star, Mail, CheckCircle } from 'lucide-react';
 import Reviews from '../components/Reviews';
 import { addBooking } from '../services/db';
+import VideoPlaceholder from '../components/VideoPlaceholder';
 
 declare global {
   interface Window {
@@ -126,14 +127,7 @@ export default function Contact() {
               <div>
                 <h3 className="text-2xl font-serif font-bold text-primary dark:text-white mb-6">Client Experience</h3>
                 <div className="relative w-full h-[600px] bg-gray-200 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700">
-                  <iframe 
-                    src="https://www.instagram.com/reel/DHmBRF4teAd/embed" 
-                    className="w-full h-full object-cover"
-                    frameBorder="0" 
-                    scrolling="no" 
-                    allowFullScreen
-                    title="Client Testimonial"
-                  />
+                  <VideoPlaceholder title="Client Testimonial" />
                 </div>
               </div>
             </div>

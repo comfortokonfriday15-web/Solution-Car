@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { Plane, Calendar, MapPin, Truck, Car, Clock, CheckCircle, Shield, Camera } from 'lucide-react';
+import VideoPlaceholder from '../components/VideoPlaceholder';
 
 export default function Services() {
   const services = [
@@ -134,9 +135,9 @@ export default function Services() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { url: 'https://www.instagram.com/reel/DOptfz-jKyb/embed', title: 'Luxury in Motion' },
-              { url: 'https://www.instagram.com/reel/DQYL9hqiFiq/embed', title: 'Executive Travel' },
-              { url: 'https://www.instagram.com/reel/DNahC_sMKGS/embed', title: 'Premium Comfort' }
+              { title: 'Luxury in Motion' },
+              { title: 'Executive Travel' },
+              { title: 'Premium Comfort' }
             ].map((video, index) => (
               <motion.div
                 key={index}
@@ -148,14 +149,7 @@ export default function Services() {
                 className="group bg-white dark:bg-bg-dark rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col"
               >
                 <div className="relative w-full h-[500px] bg-gray-200 dark:bg-gray-800">
-                  <iframe 
-                    src={video.url} 
-                    className="w-full h-full object-cover"
-                    frameBorder="0" 
-                    scrolling="no" 
-                    allowFullScreen
-                    title={`${video.title} Video`}
-                  />
+                  <VideoPlaceholder title={video.title} />
                 </div>
                 
                 <div className="p-6 text-center mt-auto">

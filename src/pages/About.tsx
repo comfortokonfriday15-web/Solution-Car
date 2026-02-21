@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { MapPin, Phone, Clock, Star, Shield } from 'lucide-react';
+import VideoPlaceholder from '../components/VideoPlaceholder';
 
 export default function About() {
   return (
@@ -61,18 +62,8 @@ export default function About() {
             
             <div className="relative flex justify-center">
               <div className="absolute -inset-4 bg-secondary/20 rounded-2xl transform rotate-3" />
-              <div className="relative rounded-2xl shadow-2xl overflow-hidden bg-black">
-                <iframe 
-                  src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F956705867021106%2F&show_text=false&width=267&t=0" 
-                  width="267" 
-                  height="476" 
-                  style={{ border: 'none', overflow: 'hidden' }} 
-                  scrolling="no" 
-                  frameBorder="0" 
-                  allowFullScreen={true} 
-                  allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                  title="Solution Car Rental Video"
-                ></iframe>
+              <div className="relative rounded-2xl shadow-2xl overflow-hidden bg-black w-[267px] h-[476px]">
+                <VideoPlaceholder title="Our Story" />
               </div>
             </div>
           </div>
