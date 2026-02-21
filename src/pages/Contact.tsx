@@ -1,82 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { MapPin, Phone, Clock, Star, Mail, CheckCircle } from 'lucide-react';
 import Reviews from '../components/Reviews';
 import { addBooking } from '../services/db';
 
+declare global {
+  interface Window {
+    hbspt: any;
+  }
+}
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: '',
-    contactMethod: 'Either'
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { id, name, value, type } = e.target;
-    // Handle radio buttons which use 'name' attribute, others use 'id'
-    const fieldName = type === 'radio' ? name : id;
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = "//js-eu1.hsforms.net/forms/embed/v2.js";
+    script.charset = "utf-8";
+    script.type = "text/javascript";
+    script.async = true;
     
-    // For radio buttons, the name is 'contactMethod'
-    if (fieldName === 'contactMethod') {
-      setFormData(prev => ({ ...prev, contactMethod: value }));
-    } else {
-      setFormData(prev => ({ ...prev, [fieldName]: value }));
-    }
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmitStatus('idle');
-
-    // Create the payload matching the Google Apps Script expectation
-    const payload = {
-      fullName: formData.fullName,
-      email: formData.email,
-      phone: formData.phone,
-      service: formData.service,
-      message: formData.message,
-      contactMethod: formData.contactMethod
+    script.onload = () => {
+      if (window.hbspt) {
+        window.hbspt.forms.create({
+          portalId: "147856362",
+          formId: "99c495c0-773d-42f3-8eaa-8236832d05fd",
+          region: "eu1",
+          target: "#hubspot-form-container"
+        });
+      }
     };
-
-    try {
-      // Save to local IndexedDB first (as backup/offline support)
-      await addBooking(formData);
-
-      // Send to Google Apps Script
-      // Using mode: 'no-cors' is essential for client-side submission to Google Apps Script
-      // This means we cannot read the response, but the request will still reach the server.
-      await fetch('https://script.google.com/macros/s/AKfycbwH2JkUTjsflrkCV0q-afVs-Ws757XwHeBqbrs2v7a_it7bUYokkXE8QTCMmxqedpHr/exec', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload)
-      });
-
-      // With no-cors, we assume success if no network error occurred
-      setSubmitStatus('success');
-      setFormData({
-        fullName: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: '',
-        contactMethod: 'Either'
-      });
-    } catch (error) {
-      console.error('Error saving booking:', error);
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+    
+    document.body.appendChild(script);
+    
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="pt-20 pb-20">
@@ -130,139 +88,7 @@ export default function Contact() {
               </div>
 
               <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label htmlFor="fullName" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Your full name *</label>
-                    <input 
-                      type="text" 
-                      id="fullName" 
-                      value={formData.fullName}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                      placeholder="John Doe" 
-                    />
-                  </div>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Email address *</label>
-                      <input 
-                        type="email" 
-                        id="email" 
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                        placeholder="john@example.com" 
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Phone Number</label>
-                      <input 
-                        type="tel" 
-                        id="phone" 
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                        placeholder="+234..." 
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="service" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">What do you need? *</label>
-                    <select 
-                      id="service" 
-                      value={formData.service}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all"
-                    >
-                      <option value="">Select a service...</option>
-                      <option value="Airport Transfer">Airport Transfer</option>
-                      <option value="Full Day Rental">Full Day Rental</option>
-                      <option value="Event logistics">Event logistics</option>
-                      <option value="Inter & Intra-state Logistics">Inter & Intra-state Logistics</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Tell us about your trip or request *</label>
-                    <textarea 
-                      id="message" 
-                      rows={4} 
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" 
-                      placeholder="e.g., I need a well-maintained SUV for 3 days next week, with a professional chauffeur. We're 4 people."
-                    ></textarea>
-                    <p className="text-xs text-gray-500 mt-1">Include dates, vehicle type, or special requests</p>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">How should we reach you? *</label>
-                    <div className="flex gap-6">
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input 
-                          type="radio" 
-                          name="contactMethod" 
-                          value="Email" 
-                          checked={formData.contactMethod === 'Email'}
-                          onChange={handleChange}
-                          required
-                          className="text-secondary focus:ring-secondary" 
-                        />
-                        <span className="text-sm text-gray-600 dark:text-gray-400">Email</span>
-                      </label>
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input 
-                          type="radio" 
-                          name="contactMethod" 
-                          value="Phone" 
-                          checked={formData.contactMethod === 'Phone'}
-                          onChange={handleChange}
-                          className="text-secondary focus:ring-secondary" 
-                        />
-                        <span className="text-sm text-gray-600 dark:text-gray-400">Phone</span>
-                      </label>
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input 
-                          type="radio" 
-                          name="contactMethod" 
-                          value="Either" 
-                          checked={formData.contactMethod === 'Either'}
-                          onChange={handleChange}
-                          className="text-secondary focus:ring-secondary" 
-                        />
-                        <span className="text-sm text-gray-600 dark:text-gray-400">Either is fine</span>
-                      </label>
-                    </div>
-                  </div>
-
-                  <button 
-                    type="submit" 
-                    disabled={isSubmitting}
-                    className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
-                  >
-                    {isSubmitting ? 'Sending...' : 'Request a Callback'}
-                  </button>
-
-                  {submitStatus === 'success' && (
-                    <div className="p-4 bg-green-100 text-green-700 rounded-lg flex items-center gap-2">
-                      <CheckCircle size={20} />
-                      <span>✓ Thank you! Your inquiry has been sent. We'll contact you shortly.</span>
-                    </div>
-                  )}
-
-                  {submitStatus === 'error' && (
-                    <div className="p-4 bg-red-100 text-red-700 rounded-lg">
-                      ✗ Sorry, something went wrong. Please call us at 0808 441 0493.
-                    </div>
-                  )}
-                </form>
+                <div id="hubspot-form-container"></div>
               </div>
             </div>
 
