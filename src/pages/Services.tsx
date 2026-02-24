@@ -60,15 +60,15 @@ export default function Services() {
       </section>
 
       {/* About Us Section */}
-      <section className="py-16 bg-white dark:bg-bg-dark">
+      <section className="py-16 bg-transparent">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="p-8 border-2 border-secondary/20 rounded-2xl bg-gray-50 dark:bg-gray-800/50"
+            className="p-8 border-2 border-secondary/20 rounded-2xl bg-white/5 backdrop-blur-sm"
           >
-            <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 italic leading-relaxed font-serif">
+            <p className="text-lg md:text-xl text-gray-300 italic leading-relaxed font-serif">
               "We believe that every journey should be smooth, comfortable, and worry-free, that’s why we’ve built our Car rental for quick trips to big adventures, we’ve got the keys to your journey. Simple, reliable, and stress-free."
             </p>
           </motion.div>
@@ -76,22 +76,22 @@ export default function Services() {
       </section>
 
       {/* Our Services Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-900">
+      <section className="py-16 bg-black/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-serif font-bold text-primary dark:text-white text-center mb-12">Our Services</h2>
+          <h2 className="text-3xl font-serif font-bold text-white text-center mb-12">Our Services</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {services.map((service, index) => (
               <motion.div 
                 key={index}
                 whileHover={{ scale: 1.02 }}
-                className="bg-white dark:bg-bg-dark p-8 rounded-xl shadow-md border-l-4 border-secondary flex items-start gap-6"
+                className="bg-white/5 backdrop-blur-sm p-8 rounded-xl shadow-xl border-l-4 border-secondary flex items-start gap-6 hover:bg-white/10 transition-all duration-300"
               >
                 <div className="bg-secondary/10 p-4 rounded-full text-secondary flex-shrink-0">
                   <service.icon size={32} />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-primary dark:text-white mb-2">{service.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">{service.desc}</p>
+                  <h3 className="text-xl font-bold text-white mb-2">{service.title}</h3>
+                  <p className="text-gray-400 text-sm">{service.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -100,20 +100,20 @@ export default function Services() {
       </section>
 
       {/* Key Features Section */}
-      <section className="py-16 bg-white dark:bg-bg-dark">
+      <section className="py-16 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-serif font-bold text-primary dark:text-white text-center mb-12">Key Features</h2>
+          <h2 className="text-3xl font-serif font-bold text-white text-center mb-12">Key Features</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {features.map((feature, index) => (
               <motion.div 
                 key={index}
                 whileHover={{ y: -5 }}
-                className="flex flex-col items-center text-center p-6 bg-gray-50 dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700"
+                className="flex flex-col items-center text-center p-6 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300"
               >
                 <div className="text-secondary mb-4">
                   <feature.icon size={40} />
                 </div>
-                <p className="font-semibold text-gray-800 dark:text-gray-200">{feature.text}</p>
+                <p className="font-semibold text-gray-200">{feature.text}</p>
               </motion.div>
             ))}
           </div>
@@ -121,14 +121,14 @@ export default function Services() {
       </section>
 
       {/* Experience the Ride Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section className="py-20 bg-black/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
               Experience the Ride
             </h2>
             <div className="w-24 h-1 bg-secondary mx-auto rounded-full mb-6" />
-            <p className="text-lg text-gray-600 dark:text-gray-300">
+            <p className="text-lg text-gray-300">
               See our fleet in action – luxury, comfort, and style combined
             </p>
           </div>
@@ -146,14 +146,14 @@ export default function Services() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="group bg-white dark:bg-bg-dark rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col"
+                className="group bg-white/5 backdrop-blur-sm rounded-2xl shadow-xl overflow-hidden border border-white/10 flex flex-col"
               >
-                <div className="relative w-full h-[500px] bg-gray-200 dark:bg-gray-800">
+                <div className="relative w-full h-[500px] bg-gray-800">
                   <VideoPlaceholder title={video.title} />
                 </div>
                 
                 <div className="p-6 text-center mt-auto">
-                  <h3 className="text-xl font-bold text-primary dark:text-white mb-1">{video.title}</h3>
+                  <h3 className="text-xl font-bold text-white mb-1">{video.title}</h3>
                 </div>
               </motion.div>
             ))}

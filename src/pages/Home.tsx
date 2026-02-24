@@ -76,10 +76,10 @@ export default function Home() {
       </section>
 
       {/* Services Preview */}
-      <section className="py-20 bg-white dark:bg-bg-dark reveal">
+      <section className="py-20 bg-transparent reveal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-4">Our Services</h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Our Services</h2>
             <div className="w-20 h-1 bg-secondary mx-auto rounded-full" />
           </div>
 
@@ -92,13 +92,13 @@ export default function Home() {
               <motion.div 
                 key={index}
                 whileHover={{ y: -10 }}
-                className="p-8 bg-gray-50 dark:bg-gray-800 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 dark:border-gray-700 card-hover"
+                className="p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl shadow-xl hover:bg-white/10 transition-all duration-300 card-hover"
               >
                 <div className="w-14 h-14 bg-secondary/10 rounded-full flex items-center justify-center mb-6 text-secondary group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
                   <service.icon size={32} />
                 </div>
-                <h3 className="text-xl font-bold text-primary dark:text-white mb-3">{service.title}</h3>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">{service.desc}</p>
+                <h3 className="text-xl font-bold text-white mb-3">{service.title}</h3>
+                <p className="text-gray-300 leading-relaxed">{service.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -106,10 +106,10 @@ export default function Home() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900 reveal">
+      <section className="py-20 bg-black/20 reveal">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl hover-scale">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl hover-scale border border-white/10">
               <img 
                 src="https://scontent-los2-1.xx.fbcdn.net/v/t39.30808-6/548295908_2678880169114856_2471383794746981099_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=7b2446&_nc_eui2=AeERZflFjJeS71eXxIF9cxWxbJ9ejX0vQXtsn16NfS9Be66Afk8d-dyphn9rxl1mGhWk9y-lGqsFxt7SM2BZrH03&_nc_ohc=14oGF3EJXDoQ7kNvwGB0Eaa&_nc_oc=Adna9NjGiQIH9RsiGHAs7vqPkQH0frj6cfzFE_vW6YLNoE_40yX5J78Z_vo97qAIQRU&_nc_zt=23&_nc_ht=scontent-los2-1.xx&_nc_gid=8MmRn_J1UFERfNJaISfebw&oh=00_Afv6666HXfgvgHyjzNCZBvL1dX5d0K2kIzqhoLXmOWzYnw&oe=699E7922" 
                 alt="Why Choose Us" 
@@ -118,8 +118,8 @@ export default function Home() {
             </div>
             
             <div>
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-6">Why Choose Solution Car Rental?</h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-8 text-lg leading-relaxed">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-6">Why Choose Solution Car Rental?</h2>
+              <p className="text-gray-300 mb-8 text-lg leading-relaxed">
                 We are committed to providing the best car rental experience in Akwa Ibom. Our reputation is built on trust, quality, and exceptional customer service.
               </p>
               
@@ -136,14 +136,14 @@ export default function Home() {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
-                    <span className="text-gray-700 dark:text-gray-200 font-medium">{item}</span>
+                    <span className="text-gray-200 font-medium">{item}</span>
                   </div>
                 ))}
               </div>
 
               <Link 
                 to="/about" 
-                className="inline-block mt-8 text-secondary font-semibold hover:text-primary dark:hover:text-white transition-colors hover:underline underline-offset-4"
+                className="inline-block mt-8 text-secondary font-semibold hover:text-white transition-colors hover:underline underline-offset-4"
               >
                 Learn More About Us &rarr;
               </Link>

@@ -70,25 +70,25 @@ export default function Contact() {
       </section>
 
       {/* Contact Form & Info */}
-      <section className="py-20 bg-white dark:bg-bg-dark">
+      <section className="py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             
             {/* Left Column: Booking Form */}
             <div className="space-y-8">
               <div>
-                <h2 className="text-3xl font-serif font-bold text-primary dark:text-white mb-2">Ready to hit the road? Let's talk.</h2>
+                <h2 className="text-3xl font-serif font-bold text-white mb-2">Ready to hit the road? Let's talk.</h2>
                 <div className="flex items-center gap-2 text-secondary font-medium">
                   <div className="flex">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <Star key={star} size={16} fill="currentColor" />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400">4.9 (95 reviews) – Akwa Ibom's most trusted car rental</span>
+                  <span className="text-sm text-gray-400">4.9 (95 reviews) – Akwa Ibom's most trusted car rental</span>
                 </div>
               </div>
 
-              <div className="bg-gray-50 dark:bg-gray-800 p-8 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
+              <div className="bg-white/5 backdrop-blur-sm p-8 rounded-2xl shadow-lg border border-white/10">
                 <div id="hubspot-form-container"></div>
               </div>
             </div>
@@ -96,27 +96,27 @@ export default function Contact() {
             {/* Right Column: Info & Video */}
             <div className="space-y-12">
               <div>
-                <h3 className="text-2xl font-serif font-bold text-primary dark:text-white mb-6">Get in Touch</h3>
-                <div className="space-y-6 text-gray-600 dark:text-gray-300">
+                <h3 className="text-2xl font-serif font-bold text-white mb-6">Get in Touch</h3>
+                <div className="space-y-6 text-gray-300">
                   <div className="flex items-start gap-4">
                     <MapPin className="text-secondary mt-1 flex-shrink-0" size={24} />
                     <div>
-                      <h4 className="font-bold text-lg text-gray-900 dark:text-white">Address</h4>
+                      <h4 className="font-bold text-lg text-white">Address</h4>
                       <p>Unit F, De-Castle Luxury Home, Plot 25, Ewet Housing Estate, Uyo, Akwa Ibom</p>
-                      <p className="text-sm text-gray-500 mt-1">Plus Code: 2WCW+5M Uyo</p>
+                      <p className="text-sm text-gray-400 mt-1">Plus Code: 2WCW+5M Uyo</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Phone className="text-secondary mt-1 flex-shrink-0" size={24} />
                     <div>
-                      <h4 className="font-bold text-lg text-gray-900 dark:text-white">Phone</h4>
+                      <h4 className="font-bold text-lg text-white">Phone</h4>
                       <p>0808 441 0493</p>
                     </div>
                   </div>
                   <div className="flex items-start gap-4">
                     <Clock className="text-secondary mt-1 flex-shrink-0" size={24} />
                     <div>
-                      <h4 className="font-bold text-lg text-gray-900 dark:text-white">Hours</h4>
+                      <h4 className="font-bold text-lg text-white">Hours</h4>
                       <p>Open 24 Hours</p>
                     </div>
                   </div>
@@ -125,8 +125,8 @@ export default function Contact() {
 
               {/* Video Testimonial */}
               <div>
-                <h3 className="text-2xl font-serif font-bold text-primary dark:text-white mb-6">Client Experience</h3>
-                <div className="relative w-full h-[600px] bg-gray-200 dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-gray-100 dark:border-gray-700">
+                <h3 className="text-2xl font-serif font-bold text-white mb-6">Client Experience</h3>
+                <div className="relative w-full h-[600px] bg-gray-800 rounded-2xl overflow-hidden shadow-xl border border-white/10">
                   <VideoPlaceholder title="Client Testimonial" />
                 </div>
               </div>
@@ -139,10 +139,10 @@ export default function Contact() {
       </section>
 
       {/* Meet the Team Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-900">
+      <section className="py-20 bg-black/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-serif font-bold text-primary dark:text-white mb-4">Meet the Team</h2>
+            <h2 className="text-3xl font-serif font-bold text-white mb-4">Meet the Team</h2>
             <div className="w-20 h-1 bg-secondary mx-auto rounded-full" />
           </div>
           

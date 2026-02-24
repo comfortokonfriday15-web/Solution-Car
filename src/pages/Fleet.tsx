@@ -59,7 +59,7 @@ export default function Fleet() {
       </section>
 
       {/* Fleet Grid */}
-      <section className="py-20 bg-white dark:bg-bg-dark">
+      <section className="py-20 bg-transparent">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {categories.map((category, index) => (
@@ -69,7 +69,7 @@ export default function Fleet() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700"
+                className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 bg-white/5 backdrop-blur-sm border border-white/10"
               >
                 <div className="aspect-w-16 aspect-h-9 overflow-hidden h-64">
                   <img 
@@ -81,10 +81,10 @@ export default function Fleet() {
                 </div>
                 
                 <div className="p-8 relative">
-                  <h3 className="text-2xl font-serif font-bold text-primary dark:text-white mb-3">{category.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">{category.desc}</p>
+                  <h3 className="text-2xl font-serif font-bold text-white mb-3">{category.title}</h3>
+                  <p className="text-gray-300 mb-6 leading-relaxed">{category.desc}</p>
                   
-                  <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-6">
+                  <div className="flex items-center gap-4 text-sm text-gray-400 mb-6">
                     <div className="flex items-center gap-1">
                       <Star size={16} className="text-secondary" />
                       <span>Clean</span>
@@ -111,7 +111,7 @@ export default function Fleet() {
           </div>
 
           <div className="mt-16 text-center">
-            <p className="text-gray-600 dark:text-gray-300 text-lg mb-8">
+            <p className="text-gray-300 text-lg mb-8">
               Need a specific vehicle? Contact us to discuss your requirements.
             </p>
             <Link 

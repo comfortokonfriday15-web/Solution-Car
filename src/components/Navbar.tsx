@@ -17,7 +17,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-40 w-full backdrop-blur-md bg-white/80 dark:bg-bg-dark/80 border-b border-gray-200 dark:border-gray-800 transition-colors duration-300">
+    <nav className="sticky top-0 z-40 w-full backdrop-blur-md bg-black/50 border-b border-white/10 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -29,7 +29,7 @@ export default function Navbar() {
                 className="w-full h-full object-cover"
               />
             </div>
-            <span className="font-serif font-bold text-xl text-primary dark:text-white tracking-tight leading-tight">
+            <span className="font-serif font-bold text-xl text-white tracking-tight leading-tight">
               Solution <span className="text-secondary">Car Rental</span>
             </span>
           </Link>
@@ -43,7 +43,7 @@ export default function Navbar() {
                 className={`relative font-medium text-sm tracking-wide transition-colors duration-300 ${
                   location.pathname === link.path 
                     ? 'text-secondary' 
-                    : 'text-gray-600 dark:text-gray-300 hover:text-secondary dark:hover:text-secondary'
+                    : 'text-gray-300 hover:text-secondary'
                 }`}
               >
                 {link.name}
@@ -58,7 +58,7 @@ export default function Navbar() {
             
             <button
               onClick={() => navigate('/contact')}
-              className="px-6 py-2 bg-secondary text-primary font-bold rounded-full hover:bg-primary hover:text-white transition-all duration-300 shadow-md hover:shadow-lg text-sm"
+              className="px-6 py-2 bg-secondary text-primary font-bold rounded-full hover:bg-white hover:text-primary transition-all duration-300 shadow-md hover:shadow-lg text-sm"
             >
               Book Online
             </button>
@@ -68,7 +68,7 @@ export default function Navbar() {
           <div className="md:hidden flex items-center gap-4">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-600 dark:text-gray-300 hover:text-secondary transition-colors"
+              className="text-gray-300 hover:text-secondary transition-colors"
             >
               {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
@@ -83,7 +83,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-white dark:bg-bg-dark border-b border-gray-200 dark:border-gray-800 overflow-hidden"
+            className="md:hidden bg-black/90 backdrop-blur-md border-b border-white/10 overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-2">
               {navLinks.map((link) => (
@@ -94,7 +94,7 @@ export default function Navbar() {
                   className={`block px-3 py-3 rounded-md text-base font-medium transition-colors ${
                     location.pathname === link.path
                       ? 'bg-secondary/10 text-secondary'
-                      : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                      : 'text-gray-300 hover:bg-white/10'
                   }`}
                 >
                   {link.name}
@@ -105,7 +105,7 @@ export default function Navbar() {
                   setIsOpen(false);
                   navigate('/contact');
                 }}
-                className="w-full mt-4 px-3 py-3 bg-secondary text-primary font-bold rounded-md hover:bg-primary hover:text-white transition-all duration-300 text-center"
+                className="w-full mt-4 px-3 py-3 bg-secondary text-primary font-bold rounded-md hover:bg-white hover:text-primary transition-all duration-300 text-center"
               >
                 Book Online
               </button>

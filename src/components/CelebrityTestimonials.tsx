@@ -8,7 +8,7 @@ export default function CelebrityTestimonials() {
       title: 'Popular Philanthropist',
     },
     {
-      name: 'Veekee James & Femi Taere',
+      name: 'Veekee James & Femi Atere',
       title: 'Fashion Icon & Celebrity Personality',
     },
     {
@@ -18,14 +18,14 @@ export default function CelebrityTestimonials() {
   ];
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-gray-900">
+    <section className="py-20 bg-transparent">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-primary dark:text-white mb-4">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">
             Here’s what celebrities are saying about the brand
           </h2>
           <div className="w-24 h-1 bg-secondary mx-auto rounded-full mb-6" />
-          <p className="text-lg text-gray-600 dark:text-gray-300">
+          <p className="text-lg text-gray-300">
             Trusted by Nigeria’s finest – watch their experiences
           </p>
         </div>
@@ -39,14 +39,14 @@ export default function CelebrityTestimonials() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              className="group bg-white dark:bg-bg-dark rounded-2xl shadow-lg overflow-hidden border border-gray-100 dark:border-gray-700 flex flex-col"
+              className="group bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl shadow-xl hover:bg-white/10 overflow-hidden flex flex-col"
             >
-              <div className="relative w-full h-[500px] bg-gray-200 dark:bg-gray-800">
+              <div className="relative w-full h-[500px] bg-gray-800">
                 <VideoPlaceholder title={celebrity.name} />
               </div>
               
               <div className="p-6 text-center mt-auto">
-                <h3 className="text-xl font-bold text-primary dark:text-white mb-1">{celebrity.name}</h3>
+                <h3 className="text-xl font-bold text-white mb-1">{celebrity.name}</h3>
                 <p className="text-sm font-medium text-secondary uppercase tracking-wide">{celebrity.title}</p>
               </div>
             </motion.div>
